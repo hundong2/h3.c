@@ -1,5 +1,7 @@
 # h3-metal
 
+[한국어](README_kor.md) · [한국어 학습 가이드](guide/README.md)
+
 Native MiniMax-H3 inference for Apple Silicon. The project is being built as a
 sequence of working vertical slices: deterministic host/model metadata first,
 then portable Metal block parity, prompt encoding, prompt-to-video/audio, and
