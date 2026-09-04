@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "h3.c Repository Architecture",
+    "output": "architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/hundong2/h3.c.git",
+      "revision": "4b861b1ff3e489be6a4853d2a10ac7784c5bc504"
+    },
+    "viewBox": [
+      1300,
+      720
+    ],
+    "views": [
+      {
+        "id": "primary-path",
+        "label": "Primary runtime path",
+        "focus": [
+          "developer",
+          "repo_docs",
+          "setup",
+          "entrypoints",
+          "core",
+          "outputs"
+        ],
+        "note": "Follow how a learner moves from docs to setup, entrypoints, core logic, and outputs."
+      },
+      {
+        "id": "code-evidence",
+        "label": "Code evidence",
+        "focus": [
+          "repo_docs",
+          "setup",
+          "entrypoints",
+          "inputs",
+          "core",
+          "tests"
+        ],
+        "note": "Use README, dependency markers, top directories, and tests as the first evidence pass."
+      },
+      {
+        "id": "runtime-unknowns",
+        "label": "Runtime unknowns",
+        "focus": [
+          "external_assets",
+          "core",
+          "outputs"
+        ],
+        "note": "Treat weights, datasets, credentials, hosted APIs, and hardware needs as repo-specific unknowns."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "developer",
+      "type": "external",
+      "label": "Developer / learner",
+      "sublabel": "reads and runs",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "repo_docs",
+      "type": "frontend",
+      "label": "README and docs",
+      "sublabel": "h3-metal",
+      "pos": [
+        240,
+        300
+      ],
+      "size": [
+        155,
+        64
+      ],
+      "sources": [
+        {
+          "path": "README_kor.md",
+          "label": "repo docs"
+        }
+      ]
+    },
+    {
+      "id": "setup",
+      "type": "cloud",
+      "label": "Setup and deps",
+      "sublabel": "Make",
+      "pos": [
+        440,
+        300
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "entrypoints",
+      "type": "backend",
+      "label": "Entry points",
+      "sublabel": "docs, guide, tests",
+      "pos": [
+        640,
+        300
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "core",
+      "type": "backend",
+      "label": "Runtime / systems core",
+      "sublabel": "build and execute",
+      "pos": [
+        840,
+        300
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "tag": "Systems and runtimes"
+    },
+    {
+      "id": "outputs",
+      "type": "frontend",
+      "label": "Binaries / services",
+      "sublabel": "local runtime",
+      "pos": [
+        1060,
+        300
+      ],
+      "size": [
+        155,
+        64
+      ]
+    },
+    {
+      "id": "inputs",
+      "type": "database",
+      "label": "Inputs and config",
+      "sublabel": "files, flags, params",
+      "pos": [
+        640,
+        110
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "security",
+      "label": "Tests / evaluation",
+      "sublabel": "expected behavior",
+      "pos": [
+        840,
+        510
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "external_assets",
+      "type": "external",
+      "label": "External assets",
+      "sublabel": "weights, data, APIs",
+      "pos": [
+        1060,
+        510
+      ],
+      "size": [
+        155,
+        64
+      ],
+      "tag": "unknown"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Repository boundary: h3.c",
+      "wraps": [
+        "repo_docs",
+        "setup",
+        "entrypoints",
+        "inputs",
+        "core",
+        "outputs",
+        "tests"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Repo-specific runtime requirements",
+      "wraps": [
+        "external_assets"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "developer-to-docs",
+      "from": "developer",
+      "to": "repo_docs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "docs-to-setup",
+      "from": "repo_docs",
+      "to": "setup"
+    },
+    {
+      "id": "setup-to-entrypoints",
+      "from": "setup",
+      "to": "entrypoints"
+    },
+    {
+      "id": "entrypoints-to-core",
+      "from": "entrypoints",
+      "to": "core",
+      "variant": "emphasis"
+    },
+    {
+      "id": "core-to-outputs",
+      "from": "core",
+      "to": "outputs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "inputs-to-entrypoints",
+      "from": "inputs",
+      "to": "entrypoints",
+      "variant": "dashed"
+    },
+    {
+      "id": "core-to-tests",
+      "from": "core",
+      "to": "tests",
+      "variant": "security"
+    },
+    {
+      "id": "assets-to-core",
+      "from": "external_assets",
+      "to": "core",
+      "variant": "dashed"
+    }
+  ]
+}
